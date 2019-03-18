@@ -1,14 +1,24 @@
 #Colocar o caminho do control raiz relativo ao arquivo:
 import sys
-origin_path = "/.."
+
+from sys import platform as _platform
+
+if _platform == "linux" or _platform == "linux2":
+    # linux
+    origin_path = "/../.."
+elif _platform == "win32" or "win64":
+    # Windows
+    origin_path = "..\.."
+#elif _platform == "darwin":
+    # MAC OS X
 if origin_path not in sys.path:
     sys.path.append(origin_path)
 
-from Validacoes.Validacao import Validacao
-from Exceptions.FormatoInvalidoException import FormatoInvalidoException
-from Exceptions.AbaixoLengthException import AbaixoLengthException
-from Exceptions.AcimaLengthException import AcimaLengthException
-from Exceptions.ErroFatal import ErroFatal
+from business.control.Validacoes.Validacao import Validacao
+from business.control.Exceptions.FormatoInvalidoException import FormatoInvalidoException
+from business.control.Exceptions.AbaixoLengthException import AbaixoLengthException
+from business.control.Exceptions.ErroFatal import ErroFatal
+from business.control.Exceptions.AcimaLengthException import AcimaLengthException
 
 import re
 
@@ -24,7 +34,7 @@ class ValidaFormatoSenha(Validacao):
         padrao = re.match(r'^(?=\w*\d)[a-zA-Z\d]{5,15}$', entrada)
 
         if padrao:
-            return True
+            return entrada
         else:
             formatoInvalido = re.match(r'^.{6,16}$', entrada)
             tamanhoMenor = re.match(r'^[a-zA-Z\d]{0,5}$', entrada)
