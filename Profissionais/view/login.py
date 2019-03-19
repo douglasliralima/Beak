@@ -16,30 +16,12 @@ if origin_path not in sys.path:
 
 from business.control.Validacoes.ValidaLogin import ValidaFormatoLogin
 from business.control.Validacoes.ValidaSenha import ValidaFormatoSenha
+from infra.infra import GerenciadorBanco
+
 
 from business.model.cliente import Cliente
 import getpass
 
-def credenciamento():
-
-    filename = 'clientes.db'
-    db = shelve.open(filename, flag='c')
-
-    return db
-
-def validaCliente(email, senha):
-
-    #Pega o banco de dados de clientes já cadastrados
-    db = credenciamento()
-
-    try:
-        cliente = db[email]
-        cliente_valido = True
-    except Exception as error:
-        cliente_valido = False
-        #print('Error:', error)
-
-    return cliente_valido
 
 def main():
     while(True):
@@ -49,12 +31,13 @@ def main():
         try:
             email = ValidaFormatoLogin().valida(email)
             senha = ValidaFormatoSenha().valida(senha)
+            gerenciador = GerenciadorBanco()
 
-            cliente_valido = validaCliente(email, senha)
+            cliente_valido = gerenciador.validaCliente(email, senha)
 
             if cliente_valido:
-                sucess_message = '\nLogin realizado com Sucesso!'
-                print(sucess_message)
+                success_message = '\nLogin realizado com Sucesso!'
+                print(success_message)
             else:
                 fail_message = '\nFalha no Login, usuário inexistente!'
                 print(fail_message)

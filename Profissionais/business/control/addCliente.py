@@ -17,24 +17,22 @@ if origin_path not in sys.path:
 
 from business.control.Validacoes.ValidaLogin import ValidaFormatoLogin
 from business.control.Validacoes.ValidaSenha import ValidaFormatoSenha
-import shelve
 
+from infra.infra import GerenciadorBanco
 from business.model.cliente import Cliente
 
-import re
-
-filename = 'clientes.db'
-
-
 def addCliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco):
-	email = ValidaFormatoLogin().valida(email)
-	senha = ValidaFormatoSenha().valida(senha)
-
-	cliente = Cliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco)
-
+    email = ValidaFormatoLogin().valida(email)
+    
+    senha = ValidaFormatoSenha().valida(senha)
+    gerenciador = GerenciadorBanco()
+    
+    if gerenciador.validaEmail(email):
+        cliente = Cliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco)
+        gerenciador.persisteCliente(cliente)
+        
+    gerenciador.closeDB()
 
 ## MANDAR O QUE TEM ABAIXO PRA INFRA DEPOIS
 ## TESTE
-	db = shelve.open(filename, flag='c')
-	db[email] = cliente
-	db.close()
+	
