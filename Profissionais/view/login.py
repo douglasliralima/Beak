@@ -29,7 +29,7 @@ def main():
         senha = getpass.getpass('\n================\nDigite sua Senha:\n================\n')
 
         try:
-            email = ValidaFormatoLogin().valida(email)
+            email = ValidaFormatoLogin().valida(email.lower())
             senha = ValidaFormatoSenha().valida(senha)
             gerenciador = GerenciadorBanco()
 

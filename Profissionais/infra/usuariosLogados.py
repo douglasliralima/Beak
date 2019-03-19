@@ -15,9 +15,10 @@ if origin_path not in sys.path:
 
 import pickle
 import collections
+from datetime import datetime
 
 from business.model.cliente import Cliente
-from infra.infra import GerenciadorBanco 
+from infra.infra import GerenciadorBanco
 
 def loadLoggedClients():
     try:
@@ -46,11 +47,25 @@ def saveLoggedClients(email):
 def printLoggedClients():
     dict_log = loadLoggedClients()
 
-    print('Dict_log:', dict_log)
+    list = []
+    for user in dict_log:
+        data = dict_log[user].getNascimento()
+        list.append((data, dict_log[user].getNome()))
+
+    list.sort(key=lambda date: datetime.strptime(date[0], "%d/%m/%Y"))
+
+    print('\nLista Ordenada:', list)
 
 def deleteLoggedClients(email):
 
-    arq = open("loggedClients.pck", 'rb')
+    dict_log = loadLoggedClients()
 
-    pickle.dump(email, arq)
-    arq.close()
+    gerenciador = GerenciadorBanco()
+
+    del dict_log[email]
+
+    with open('loggedClients.pck', 'wb') as arq:
+        pickle.dump(dict_log, arq, pickle.HIGHEST_PROTOCOL)
+        arq.close()
+
+	printLoggedClients()
