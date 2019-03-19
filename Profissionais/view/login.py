@@ -1,4 +1,3 @@
-import shelve
 import sys
 from sys import platform as _platform
 
@@ -17,6 +16,7 @@ if origin_path not in sys.path:
 from business.control.Validacoes.ValidaLogin import ValidaFormatoLogin
 from business.control.Validacoes.ValidaSenha import ValidaFormatoSenha
 from infra.infra import GerenciadorBanco
+from infra.usuariosLogados import saveLoggedClients
 
 
 from business.model.cliente import Cliente
@@ -38,6 +38,7 @@ def main():
             if cliente_valido:
                 success_message = '\nLogin realizado com Sucesso!'
                 print(success_message)
+                saveLoggedClients(email)
             else:
                 fail_message = '\nFalha no Login, usuário inexistente!'
                 print(fail_message)

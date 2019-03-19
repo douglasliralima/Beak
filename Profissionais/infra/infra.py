@@ -44,6 +44,9 @@ class GerenciadorBanco:
         self.__db[cliente.getEmail()] = cliente
         return True
     
+    def getCliente(self, email):
+        return self.__db[email]
+    
     def excluiCliente(self, email):
         del self.__db[email]
         return True
