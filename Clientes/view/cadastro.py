@@ -13,6 +13,7 @@ elif _platform == "win32" or "win64":
 if origin_path not in sys.path:
     sys.path.append(origin_path)
 
+
 from business.control.addCliente import addCliente
 
 import getpass
@@ -25,11 +26,11 @@ try:
 								'78945612345', '3998875', '83986288483', 'rua doutor júlio queiroz carreira, 51')
 
 	addCliente('Pedro de Abrantes', 'abcde1', "pedroabrantes@gmail.com", '09/04/1994',
-								'78945612345', '3998875', '83986288483', 'rua doutor júlio queiroz carreira, 51')
+								'78945612345', '3998875', '83999821584', 'rua maria rosa, 1410')
 
 except Exception as E:
 	print(E)
-	
+
 '''
 while(True):
     try:

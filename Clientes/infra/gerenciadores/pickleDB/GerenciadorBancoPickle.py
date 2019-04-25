@@ -22,7 +22,7 @@ import shelve
 from business.model.cliente import Cliente
 
 
-class GerenciadorBanco:
+class GerenciadorBancoPickle:
     def __init__(self):
         #if _platform == "linux" or _platform == "linux2":
             # linux
