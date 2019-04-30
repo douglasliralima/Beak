@@ -13,15 +13,9 @@ elif _platform == "win32" or "win64":
 if origin_path not in sys.path:
     sys.path.append(origin_path)
 
-from business.control.Validacoes.ValidaLogin import ValidaFormatoLogin
-from business.control.Validacoes.ValidaSenha import ValidaFormatoSenha
-from infra.infra import GerenciadorBanco
-from infra.usuariosLogados import saveLoggedClients
+from business import facade
 
-
-from business.model.cliente import Cliente
 import getpass
-
 
 def main():
     while(True):
@@ -29,16 +23,14 @@ def main():
         senha = getpass.getpass('\n================\nDigite sua Senha:\n================\n')
 
         try:
-            email = ValidaFormatoLogin().valida(email.lower())
-            senha = ValidaFormatoSenha().valida(senha)
-            gerenciador = GerenciadorBanco()
-
-            cliente_valido = gerenciador.validaCliente(email, senha)
+            email = facade.valida_login(email)
+            senha = facade.valida_senha(senha)
+            cliente_valido = facade.valida_cliente(email, senha)
 
             if cliente_valido:
                 success_message = '\nLogin realizado com Sucesso!'
                 print(success_message)
-                saveLoggedClients(email)
+                facade.save_logged_clients(email)
             else:
                 fail_message = '\nFalha no Login, usuário inexistente!'
                 print(fail_message)

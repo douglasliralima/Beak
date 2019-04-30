@@ -18,7 +18,7 @@ import collections
 from datetime import datetime
 
 from business.model.cliente import Cliente
-from infra.infra import GerenciadorBanco
+from infra import dao
 
 def loadLoggedClients():
     try:
@@ -34,7 +34,8 @@ def saveLoggedClients(email):
 
     dict_log = loadLoggedClients()
 
-    gerenciador = GerenciadorBanco()
+    banco = 'shelve'
+    gerenciador = dao.getBanco(banco)
 
     dict_log[email] = gerenciador.getCliente(email)
 
@@ -60,7 +61,8 @@ def deleteLoggedClients(email):
 
     dict_log = loadLoggedClients()
 
-    gerenciador = GerenciadorBanco()
+    banco = 'shelve'
+    gerenciador = dao.getBanco(banco)
 
     del dict_log[email]
 
@@ -68,4 +70,4 @@ def deleteLoggedClients(email):
         pickle.dump(dict_log, arq, pickle.HIGHEST_PROTOCOL)
         arq.close()
 
-	printLoggedClients()
+    printLoggedClients()

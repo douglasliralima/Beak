@@ -34,6 +34,3 @@ def addCliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco):
         gerenciador.persisteCliente(cliente)
 
     gerenciador.closeDB()
-
-## MANDAR O QUE TEM ABAIXO PRA INFRA DEPOIS
-## TESTE
