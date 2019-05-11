@@ -18,6 +18,10 @@ from business.facade import facade
 
 import getpass
 
+class cadastro:
+	def addCliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco):
+		facade.add_cliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco)
+
 facade.add_cliente('Douglas Felizardo', '1a3b4c6', "douglasliralima@gmail.com", '26/10/1997',
 							'465465462', '12545452', '839982154', 'rua adalto lemos, 18')
 
