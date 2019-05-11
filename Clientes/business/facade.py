@@ -5,7 +5,7 @@ from datetime import datetime
 
 if _platform == "linux" or _platform == "linux2":
 	# linux
-	origin_path = "/.."
+	origin_path = ".."
 elif _platform == "win32" or "win64":
 	# Windows
 	origin_path = ".."
@@ -26,7 +26,7 @@ from infra.usuariosLogados import saveLoggedClients
 from infra import dao
 
 #classe que gera Relatório
-from business import relatorio
+from business.relatorio import relatorio
 
 frequenciaDeAcesso = 0
 frequenciaDeAcessoAnterior = 0
@@ -34,7 +34,7 @@ tempoPassado = 0
 horaPassada = datetime.now()
 
 class facade:
-
+	@staticmethod
 	def add_cliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco):
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
@@ -46,6 +46,7 @@ class facade:
 		except Exception as E:
 			print(E)
 
+	@staticmethod
 	def valida_login(email):
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
@@ -59,6 +60,7 @@ class facade:
 
 		return email
 
+	@staticmethod
 	def valida_senha(senha):
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
@@ -72,6 +74,7 @@ class facade:
 
 		return senha
 
+	@staticmethod
 	def valida_cliente(email, senha):
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
@@ -89,6 +92,7 @@ class facade:
 
 		return cliente_valido
 
+	@staticmethod
 	def save_logged_clients(email):
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
@@ -100,6 +104,7 @@ class facade:
 		except Exception as error:
 			print('\n', error)
 
+	@staticmethod
 	def relatorio_acesso():
 
 		global horaPassada, tempoPassado
@@ -111,7 +116,7 @@ class facade:
 		tempoPassado = (horaAtual - horaPassada).seconds
 		#print('tempoPassado:', tempoPassado)
 
-		tempo = 600
+		tempo = 10
 
 		#Se o tempo que passou for maior que 10 minutos ele gera um relatorio
 		if tempoPassado > tempo:
@@ -119,6 +124,7 @@ class facade:
 			horaPassada = horaAtual
 			threading.Timer(1, facade.gera_relatorio, args=[tempoPassado]).start()
 
+	@staticmethod
 	def gera_relatorio(tempoPassado):
 
 		global frequenciaDeAcessoAnterior#, tempoPassado
@@ -145,4 +151,4 @@ class facade:
 
 		dados = [frequenciaAtual, minutosPassados, quantidadeAcessoSegundos]
 
-		relatorio.getRelatorio('json', dados)
+		relatorio('json').getRelatorio(dados)

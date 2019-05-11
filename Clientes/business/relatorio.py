@@ -14,21 +14,20 @@ elif _platform == "win32" or "win64":
 if origin_path not in sys.path:
 	sys.path.append(origin_path)
 
-from business.gerenciadoresRelatorio import relatorioJson, relatorioHtml
+
+from business.gerenciadoresRelatorio.relatorioJson import relatorio_json
+from business.gerenciadoresRelatorio.relatorioHtml import relatorio_html
+
 
 class relatorio:
-	def __init__(self, tipo, dados):
+	def __init__(self, tipo):
 
 		tipo = tipo.lower()
 
 		if (tipo == 'json'):
-			self.__relatorioDados = relatorioJson.geraRelatorio(dados)
+			self.__relatorio = relatorio_json()
 		elif (tipo == 'html'):
-			self.__relatorioDados = relatorioHtml.geraRelatorio(dados)
+			self.__relatorio = relatorio_html()
 
-	def relatorio(self):
-		return self.__relatorioDados
-
-def getRelatorio(tipo, dados):
-	resultadoRelatorio = relatorio(tipo, dados).relatorio()
-	print('Relatório:', resultadoRelatorio)
+	def getRelatorio(self, dados):
+		self.__relatorio.print_relatorio(dados)
