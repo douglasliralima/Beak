@@ -34,5 +34,5 @@ class Zelador:
             self.undo_state()
 
     def getFonte(self) -> Fonte:
-        return self.__fonte
+        return self._fonte
 

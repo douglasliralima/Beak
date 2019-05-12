@@ -17,6 +17,20 @@ pedido = pedido.aceitarOrcamento(1, "01/15/2018")
 
 print(pedido.__str__(), type(pedido))
 
+pedido = pedido.cancelamentoPedido()
+
+print(pedido.__str__(), type(pedido))
+
+pedido.mudarDescrição("Eu quero melão")
+
+print(pedido.__str__(), type(pedido))
+
+pedido.previous_state()
+
+print(pedido.__str__(), type(pedido))
+
+pedido = pedido.aceitarOrcamento(1, "01/15/2018")
+
 pedido = pedido.finalizarPagamento(1, "dinheiro")
 
 pedido.setAvaliacao(1, 10)

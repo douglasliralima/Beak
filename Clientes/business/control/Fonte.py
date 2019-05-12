@@ -21,3 +21,6 @@ class Fonte:
 
     def restore_state(self, memento: Memento) -> None:
         self._state = memento.get_state()
+
+    def get_state(self):
+    	return self._state
