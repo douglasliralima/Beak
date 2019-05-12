@@ -19,6 +19,7 @@ from business.control.Validacoes.ValidaLogin import ValidaFormatoLogin
 from business.control.Validacoes.ValidaSenha import ValidaFormatoSenha
 
 from infra import dao
+import uuid
 from business.model.cliente import Cliente
 
 def addCliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco):
@@ -28,9 +29,13 @@ def addCliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco):
 
     senha = ValidaFormatoSenha().valida(senha)
     gerenciador = dao.getBanco(banco)
+    print('Gerenciador:', gerenciador)
+
+    semiId = str(uuid.uuid4()).split('-')
+    user_id = str(cpf) + semiId[0] + semiId[1]
 
     if gerenciador.validaEmail(email):
-        cliente = Cliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco)
+        cliente = Cliente(nome, senha, email, nascimento, cpf, rg, telefone, endereco, user_id)
         gerenciador.persisteCliente(cliente)
 
     gerenciador.closeDB()
