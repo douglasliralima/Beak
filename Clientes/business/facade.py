@@ -32,9 +32,6 @@ from abc import ABC, abstractmethod, ABCMeta
 from business.relatorio import relatorio
 
 #Banco que estamos usando
-banco = 'shelve'
-gerenciador = dao.getBanco(banco)
-
 frequenciaDeAcesso = 0
 frequenciaDeAcessoAnterior = 0
 tempoPassado = 0
@@ -46,6 +43,9 @@ class Verifica_Cliente(object):
 		self.__email = email
 		self.__senha = senha
 		self.__cliente_valido = False
+
+		banco = 'shelve'
+		self.__gerenciador = dao.getBanco(banco)
 
 	def valida_login(self):
 		try:
@@ -61,22 +61,18 @@ class Verifica_Cliente(object):
 
 	#Valida Cliente
 	def valida_cliente(self):
-		global gerenciador
 
 		try:
-			self.__cliente_valido = gerenciador.validaCliente(self.__email, self.__senha)
+			self.__cliente_valido = self.__gerenciador.validaCliente(self.__email, self.__senha)
 		except Exception as error:
 			print('\n', error)
 
-	@property
 	def email_cliente(self):
 		return self.__email
 
-	@property
 	def senha_cliente(self):
 		return self.__senha
 
-	@property
 	def status_cliente(self):
 		return self.__cliente_valido
 
@@ -111,7 +107,6 @@ class facade:
 
 	#Função do facade que verifica se o cliente existe no banco
 	#Também valida o email e a senha antes de verificar se o cliente existe
-	@staticmethod
 	def valida_cliente(email, senha):
 
 		global frequenciaDeAcesso
@@ -132,6 +127,7 @@ class facade:
 		fila.adiciona(comando3)
 
 		fila.processa()
+		result = Verifica_Cliente.status_cliente
 
 		return cliente_login.status_cliente
 
@@ -264,7 +260,7 @@ class comando_verifica_cliente(Comando):
 		self.__cliente_validado = verifica_cliente
 
 	def executa(self):
-		self.__cliente_validado.valida_cliente()
+		self.__cliente_validado.valida_cliente
 
 #Comandos para salvar usuário logado
 class comando_cliente_logado(Comando):

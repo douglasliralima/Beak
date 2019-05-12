@@ -17,17 +17,19 @@ if origin_path not in sys.path:
 
 from infra.gerenciadores.shelveDB.GerenciadorBancoShelve import GerenciadorBancoShelve
 from infra.gerenciadores.pickleDB.GerenciadorBancoPickle import GerenciadorBancoPickle
+from infra.singleton import Singleton
 
 class factory:
     def __init__(self, banco):
-        if (banco == 'shelve'):
+        banco_utilizado = Singleton(banco)
+
+        if (banco_utilizado.nome == 'shelve'):
             self.__gerenciador = GerenciadorBancoShelve()
-        elif (banco == 'pickle'):
+        elif (banco_utilizado.nome == 'pickle'):
             self.__gerenciador = GerenciadorBancoPickle()
 
     def banco(self):
         return self.__gerenciador
-
 
 def getBanco(banco):
     return factory(banco).banco()
