@@ -13,7 +13,7 @@ elif _platform == "win32" or "win64":
 if origin_path not in sys.path:
 	sys.path.append(origin_path)
 
-from business.FacadeCadastro import FacadeCadastro
+from business.FacadeGerenciamentoUsuario import FacadeGerenciamentoUsuario
 
 import getpass
 
@@ -21,12 +21,12 @@ class login:
 	def log_in(email, senha):
 
 		try:
-			cliente_valido = FacadeCadastro.valida_cliente(email, senha)
+			cliente_valido = FacadeGerenciamentoUsuario.valida_cliente(email, senha)
 
 			if cliente_valido:
 				success_message = '\nLogin realizado com Sucesso!'
 				print(success_message)
-				FacadeCadastro.save_logged_clients(email)
+				FacadeGerenciamentoUsuario.save_logged_clients(email)
 			else:
 				fail_message = '\nFalha no Login, usuário inexistente!'
 				print(fail_message)
@@ -41,12 +41,12 @@ def main():
 		senha = getpass.getpass('\n================\nDigite sua Senha:\n================\n')
 
 		try:
-			cliente_valido = FacadeCadastro.valida_cliente(email, senha)
+			cliente_valido = FacadeGerenciamentoUsuario.valida_cliente(email, senha)
 
 			if cliente_valido:
 				success_message = '\nLogin realizado com Sucesso!'
 				print(success_message)
-				FacadeCadastro.save_logged_clients(email)
+				FacadeGerenciamentoUsuario.save_logged_clients(email)
 			else:
 				fail_message = '\nFalha no Login, usuário inexistente!'
 				print(fail_message)

@@ -14,21 +14,21 @@ print('origin_path:', sys.path)
 if origin_path not in sys.path:
     sys.path.append(origin_path)
 
-from business.FacadeCadastro import FacadeCadastro
+from business.FacadeGerenciamentoUsuario import FacadeGerenciamentoUsuario
 
 import getpass
 
 class cadastro:
 	def addCliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco):
-		FacadeCadastro.add_cliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco)
+		FacadeGerenciamentoUsuario.add_cliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco)
 
-FacadeCadastro.add_cliente('Douglas Felizardo', '1a3b4c6', "douglasliralima@gmail.com", '26/10/1997',
+FacadeGerenciamentoUsuario.add_cliente('Douglas Felizardo', '1a3b4c6', "douglasliralima@gmail.com", '26/10/1997',
 							'465465462', '12545452', '839982154', 'rua adalto lemos, 18')
 
-FacadeCadastro.add_cliente('Ewerton Santos', 'abcde1', "ewertondnsantos@gmail.com", '11/01/1997',
+FacadeGerenciamentoUsuario.add_cliente('Ewerton Santos', 'abcde1', "ewertondnsantos@gmail.com", '11/01/1997',
 							'78945612345', '3998875', '83986288483', 'rua doutor júlio queiroz carreira, 51')
 
-FacadeCadastro.add_cliente('Pedro de Abrantes', 'abcde1', "pedroabrantes@gmail.com", '09/04/1994',
+FacadeGerenciamentoUsuario.add_cliente('Pedro de Abrantes', 'abcde1', "pedroabrantes@gmail.com", '09/04/1994',
 							'78945612345', '3998875', '83999821584', 'rua maria rosa, 1410')
 
 '''

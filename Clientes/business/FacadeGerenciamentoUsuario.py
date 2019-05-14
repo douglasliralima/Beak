@@ -44,9 +44,9 @@ from business.control.ControladoresClientes.Verifica_Cliente import Verifica_Cli
 from business.control.ControladoresClientes.Builder_Cliente import Builder_Cliente
 from business.control.ControladoresClientes.Cliente_Logados import Clientes_Logados
 
-class FacadeCadastro:
+class FacadeGerenciamentoUsuario:
 
-	#Função do FacadeCadastro que verifica se o cliente existe no banco
+	#Função do FacadeGerenciamentoUsuario que verifica se o cliente existe no banco
 	#Também valida o email e a senha antes de verificar se o cliente existe
 	@staticmethod
 	def valida_cliente(email, senha):
@@ -54,7 +54,7 @@ class FacadeCadastro:
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
 		#print('Frequencia de Acesso:', frequenciaDeAcesso)
-		FacadeCadastro.relatorio_acesso()
+		FacadeGerenciamentoUsuario.relatorio_acesso()
 
 		cliente_login = Verifica_Cliente(email, senha)
 
@@ -79,7 +79,7 @@ class FacadeCadastro:
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
 		#print('Frequencia de Acesso:', frequenciaDeAcesso)
-		FacadeCadastro.relatorio_acesso()
+		FacadeGerenciamentoUsuario.relatorio_acesso()
 
 		cliente_cadastro = Builder_Cliente(nome, senha, email, dataNasc, cpf, rg, telefone, endereco)
 
@@ -98,7 +98,7 @@ class FacadeCadastro:
 		global frequenciaDeAcesso
 		frequenciaDeAcesso += 1
 		#print('Frequencia de Acesso:', frequenciaDeAcesso)
-		FacadeCadastro.relatorio_acesso()
+		FacadeGerenciamentoUsuario.relatorio_acesso()
 
 		login_cliente = Clientes_Logados(email)
 
@@ -128,7 +128,7 @@ class FacadeCadastro:
 		if tempoPassado > tempo:
 			#print('Iniciando a thread!')
 			horaPassada = horaAtual
-			threading.Timer(1, FacadeCadastro.gera_relatorio, args=[tempoPassado]).start()
+			threading.Timer(1, FacadeGerenciamentoUsuario.gera_relatorio, args=[tempoPassado]).start()
 
 	@staticmethod
 	def gera_relatorio(tempoPassado):
