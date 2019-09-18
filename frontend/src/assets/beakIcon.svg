@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="684px" height="640px" viewBox="0 0 684 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#D3993A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FBD249" offset="0%"></stop>
+            <stop stop-color="#F5A623" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Your-App-Icon" transform="translate(-170.000000, -192.000000)">
+            <g id="Group" transform="translate(170.000000, 192.000000)">
+                <polygon id="Triangle-2-Copy" fill="#F5A623" points="340.520626 640 1 260 684 260"></polygon>
+                <polygon id="Triangle-2" fill="url(#linearGradient-1)" points="340.520626 606 1 260 684 260"></polygon>
+                <polygon id="Triangle" fill="#F8E71C" points="343 0 343 487 0 259.504554"></polygon>
+                <polygon id="Triangle" fill="url(#linearGradient-2)" points="341 0 684 259.504554 341 487"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

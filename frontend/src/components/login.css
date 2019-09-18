@@ -1,0 +1,11 @@
+div.login .btn-warning{
+    border: 0.5px groove #000000;
+    background: #FFC135;
+    color : black;
+    align-self: center;
+}
+
+img.logo {
+    width : 3%;
+    height : 3%;
+}
