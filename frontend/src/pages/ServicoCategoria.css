@@ -1,0 +1,69 @@
+/*Categoria Estática*/
+
+div.categoria {
+    height: 300px;
+    width: 230px;
+    border: 1px solid grey;
+    margin: 25px;
+    display: inline-block;
+    border-radius: 12px;
+    transition: transform .5s ease;
+}
+
+div.categoria a{
+    text-decoration: none;
+    color : black;
+} 
+
+
+div.categoria img.category-img{
+    height: 180px;
+    width: 228px;
+    border-left: 1px solid grey;
+    display: block;
+    margin-bottom: 20px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+
+div.categoria p.short-description{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+div.categoria p.anuncio{
+    background-color: #ffd966ff;
+    color : white;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 300;
+    padding:2px 0px;
+    text-align: center;
+}
+
+/* Categoria quando o usuário passa o mouse*/
+
+div.categoria:hover {
+    transform: scale(1.05);
+}
+
+
+div.categoria:hover p.short-description{
+    font-weight: 700;
+}
+
+
+div.categoria:hover p.anuncio{
+    background-color: #f1c232ff;
+    color : white;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}

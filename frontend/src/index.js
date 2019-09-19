@@ -9,5 +9,6 @@ import './global.css'
 
 //Aqui basicamente mandamos para a DOM o nosso componente de aplicação por meio de 
 //uma tag JSX colocando dentro da div root
-ReactDOM.render(<App />, 
+ReactDOM.render(
+                <App />, 
                 document.getElementById('root'));

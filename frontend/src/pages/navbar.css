@@ -1,0 +1,41 @@
+#navbar {
+    margin-top: 35px;
+
+}
+
+#navbar ul#help-options{
+    list-style-type: none;
+    display: inline;
+    overflow: hidden;
+}
+
+#navbar ul#user-options{
+    list-style-type: none;
+    display: block;
+    overflow: hidden;
+}
+
+#navbar ul#help-options li{
+    float : left;
+    padding-top: 10px;
+    margin-left: 10%;
+}
+
+#navbar ul#user-options li{
+    float : right;
+    margin-right: 12%;
+}
+
+#navbar ul#help-options li a{
+    color: black;
+}
+
+#navbar ul#help-options li a:hover{
+    color: #8c8b8b;
+}
+
+#navbar hr{
+    width : 90%;
+    border-top: 1px solid #8c8b8b;
+    margin : 2% 5%;
+}
