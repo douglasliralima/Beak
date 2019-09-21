@@ -1,0 +1,32 @@
+div#login{
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 400px;
+    padding: 40px 80px;
+    border : 1px solid rgb(165, 165, 165);
+    border-radius: 12px;
+}
+
+
+div#login h1{
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+div#login h1#logo{
+    color: #38761d;
+}
+
+
+div#login div#option-login{
+    padding: 0px 0px;
+}
+
+
+div#login div#option-login a{
+    display: inline;
+    margin-right: 30px;
+}

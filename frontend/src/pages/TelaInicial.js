@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-//Carrosel Imagens
+//Description Imagens
 import descriptionImage from '../assets/descriptionImage.png';
 
 //Explicação Imagens
@@ -30,8 +30,9 @@ import servicosEncanamento from "../assets/servicosEncanamento.jpg"
 
 import "./TelaInicial.css";
 
-import ServicoCategoria from "./ServicoCategoria.js"
-import NavBar from "./navbar.js"
+import ServicoCategoria from "../components/ServicoCategoria/ServicoCategoria.js"
+import NavBar from "../components/NavBarUnlogged/navbar.js"
+
 class TelaInicial extends React.Component {
     render() {
       return (

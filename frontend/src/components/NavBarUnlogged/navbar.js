@@ -10,8 +10,8 @@ function NavBar(){
                 <li><a href = "#">Segurança</a></li>
             </ul>
             <ul id = "user-options">
-                <li><Button variant="warning" size = "lg">Cadastrar-se</Button></li>
-                <li><Button variant="outline-warning" size = "lg">Entrar</Button></li>
+                <li><Button variant="warning" size = "lg" href = "/cadastro">Cadastrar-se</Button></li>
+                <li><Button variant="outline-warning" size = "lg" href = "/login">Entrar</Button></li>
             </ul>
             <hr/>
         </div>

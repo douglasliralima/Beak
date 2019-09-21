@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>bancos-Bradesco</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="4.-Organisms/2.-Footer/1.-Desktop-(+)-1366" transform="translate(-887.000000, -328.000000)">
+            <g id="4.-Organisms-/-Footer-/-1366">
+                <g id="--Payments" transform="translate(695.000000, 104.000000)">
+                    <g id="--Transfer" transform="translate(0.000000, 190.000000)">
+                        <g id="--Badges" transform="translate(0.000000, 34.000000)">
+                            <g id="bancos-Bradesco" transform="translate(192.000000, 0.000000)">
+                                <circle id="--Bound" fill="#879395" cx="16" cy="16" r="16"></circle>
+                                <g id="Group-30" transform="translate(6.000000, 8.000000)" fill="#FFFFFF">
+                                    <polygon id="Shape" points="11.8154231 17.8212443 11.8154231 10.0239309 9.95795326 10.0239309 9.95795326 17.8212443 8.97121216 17.8212443 8.97121216 12.4976938 8.0426446 12.4976938 8.0426446 17.8212443"></polygon>
+                                    <path d="M0.491207818,5.5606177 C1.56649381,5.11269485 2.6419127,4.66452429 3.71766384,4.21622986 C8.03621758,-1.40197253 13.6463505,0.725057272 15.6438228,3.40962192 C10.9960782,0.6313607 7.55831272,2.04752274 5.84943064,3.94740183 C18.9090854,2.68321031 22.1738828,10.1041892 15.1252508,12.8202131 C21.3665876,8.14176314 13.435041,4.3237363 5.15815636,4.7001327 C3.16985407,8.12361832 3.82252117,10.6510725 5.676529,12.9277196 C3.67746189,11.4994197 2.35166124,9.41183782 3.42960521,4.96902263 C2.45007296,5.16638616 1.47054072,5.36350196 0.491207818,5.5606177 Z" id="Path"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

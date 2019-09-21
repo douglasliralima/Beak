@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>2. Atoms/Icons/6. Social/ic_faceboo-square</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M20,5.71428571 L20,18.2857143 C20,19.2321429 19.2321429,20 18.2857143,20 L15.2392857,20 L15.2392857,13.6714286 L17.4035714,13.6714286 L17.7142857,11.2571429 L15.2392857,11.2571429 L15.2392857,9.71428571 C15.2392857,9.01428571 15.4321429,8.53928571 16.4357143,8.53928571 L17.7142857,8.53928571 L17.7142857,6.38214286 C17.4928571,6.35357143 16.7357143,6.28571429 15.85,6.28571429 C14.0071429,6.28571429 12.7428571,7.41071429 12.7428571,9.47857143 L12.7428571,11.2607143 L10.5714286,11.2607143 L10.5714286,13.675 L12.7464286,13.675 L12.7464286,20 L5.71428571,20 C4.76785714,20 4,19.2321429 4,18.2857143 L4,5.71428571 C4,4.76785714 4.76785714,4 5.71428571,4 L18.2857143,4 C19.2321429,4 20,4.76785714 20,5.71428571 Z" id="path-1"></path>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4.-Organisms/2.-Footer/1.-Desktop-(+)-1366" transform="translate(-1019.000000, -152.000000)">
+            <g id="4.-Organisms-/-Footer-/-1366">
+                <g id="--Social" transform="translate(1015.000000, 104.000000)">
+                    <g transform="translate(0.000000, 44.000000)" id="--Facebook">
+                        <g>
+                            <g id="2.-Atoms/Icons/6.-Social/ic_faceboo-square">
+                                <g id="2.-Atoms/Icons/guide"></g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="icon-facebook-square" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                <g id="1.-Quarks/Color/Basic/03.-Basic" mask="url(#mask-2)" fill="#879395" fill-rule="nonzero">
+                                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -2,6 +2,8 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom';
 
 import TelaInicial from './pages/TelaInicial';
+import login from './components/login/Login.js';
+import cadastro from './components/Cadastro/Cadastro';
 //import New from './pages/New';
 
 /**
@@ -16,6 +18,8 @@ function Routes(){
     return (
         <Switch>
             <Route path = '/' exact component = {TelaInicial} />
+            <Route path = '/login' exact component = {login} />
+            <Route path = '/cadastro' exact component = {cadastro} />
         </Switch>
     );
 }

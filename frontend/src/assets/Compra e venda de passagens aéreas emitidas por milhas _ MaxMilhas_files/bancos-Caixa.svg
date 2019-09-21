@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>bancos-Caixa</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="16" cy="16" r="16"></circle>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="4.-Organisms/2.-Footer/1.-Desktop-(+)-1366" transform="translate(-695.000000, -328.000000)">
+            <g id="4.-Organisms-/-Footer-/-1366">
+                <g id="--Payments" transform="translate(695.000000, 104.000000)">
+                    <g id="--Transfer" transform="translate(0.000000, 190.000000)">
+                        <g id="--Badges" transform="translate(0.000000, 34.000000)">
+                            <g id="bancos-Caixa">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#879395" xlink:href="#path-1"></use>
+                                <g id="caixa" mask="url(#mask-2)">
+                                    <g transform="translate(4.000000, 4.000000)">
+                                        <polygon id="Shape" fill="#879395" points="1.03537532e-05 9.73510854e-16 24 9.73510854e-16 24 24 0 24 0 0"></polygon>
+                                        <g id="caixa_icon" stroke-width="1" fill="none" transform="translate(1.200000, 5.086193)">
+                                            <g id="Group">
+                                                <polygon id="Shape" fill="#FFFFFF" points="17.7084082 14.2448672 10.9845465 14.2448672 7.11752172 7.494096 13.8413834 7.494096"></polygon>
+                                                <polygon id="Shape" fill="#D8DCDE" points="21.3373631 0.0829872978 14.6135015 0.0829872978 7.67087304 6.83375856 14.3947347 6.83375856"></polygon>
+                                                <polygon id="Shape" fill="#FFFFFF" points="3.75880805 0.0829872978 10.4826697 0.0829872978 14.3496944 6.83375856 7.62583278 6.83375856"></polygon>
+                                                <polygon id="Shape" fill="#D8DCDE" points="0.116984419 14.2448672 6.85371474 14.2448672 13.7899088 7.494096 7.06604718 7.494096"></polygon>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="12px" viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>2. Atoms/Icons/6. Social/ic_youtube</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M16.6766994,6 L7.32330062,6 C5.48813765,6 4,7.57704424 4,9.52184632 L4,14.4781537 C4,16.4229558 5.48813765,18 7.32330062,18 L16.6766994,18 C18.5118624,18 20,16.4229558 20,14.4781537 L20,9.52184632 C20,7.57704424 18.5118624,6 16.6766994,6 L16.6766994,6 Z M14.4297589,12.2391453 L10.0568521,14.4506232 C9.93975524,14.5102041 9.80521023,14.4185728 9.80521023,14.2805095 L9.80521023,9.72442131 C9.80521023,9.58635803 9.94402036,9.49472675 10.0611172,9.55882756 L14.434024,11.9079578 C14.5643039,11.9769895 14.559651,12.1746336 14.4297589,12.2391453 L14.4297589,12.2391453 L14.4297589,12.2391453 Z" id="path-1"></path>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4.-Organisms/2.-Footer/1.-Desktop-(+)-1366" transform="translate(-1019.000000, -314.000000)">
+            <g id="4.-Organisms-/-Footer-/-1366">
+                <g id="--Social" transform="translate(1015.000000, 104.000000)">
+                    <g transform="translate(0.000000, 44.000000)" id="--YouTube">
+                        <g transform="translate(0.000000, 160.000000)">
+                            <g id="2.-Atoms/Icons/6.-Social/ic_youtube">
+                                <g id="2.-Atoms/Icons/guide"></g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Icon" fill="#909090" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                <g id="1.-Quarks/Color/Basic/03.-Basic" mask="url(#mask-2)" fill="#879395" fill-rule="nonzero">
+                                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

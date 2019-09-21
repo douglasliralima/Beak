@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>2. Atoms/Icons/6. Social/ic_linkedin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.6140128,10.000146 C14.0169845,10.000146 13.2660185,10.818487 12.8900452,11.4546582 L12.8900452,10.2729263 L9.88422036,10.2729263 C9.88422036,11.0912674 9.88422036,18.9995256 9.88422036,18.9995256 L12.8900452,18.9995256 L12.8900452,14.0909025 C12.8900452,13.8181221 12.8900452,13.5453418 12.9841611,13.3636463 C13.1719026,12.8180856 13.7356173,12.2729993 14.4870735,12.2729993 C15.6140128,12.2729993 15.989986,13.0913404 15.989986,14.2730723 L15.989986,19 L18.9958109,19 L18.9958109,14.0002919 C19.0899267,11.2734372 17.5870143,10.0006204 15.614503,10.0006204 L15.614503,10.0006204 L15.6140128,10.000146 Z M5.1882317,10.2729263 L8.19405659,10.2729263 L8.19405659,18.9995256 L5.1882317,18.9995256 L5.1882317,10.2729263 Z M6.69065396,6.0004744 C5.65734038,6.0004744 5,6.63664562 5,7.5455972 C5,8.36393825 5.65734038,9.09071999 6.69065396,9.09071999 L6.69065396,9.09071999 C7.72396754,9.09071999 8.38130791,8.45454877 8.38130791,7.5451228 C8.38130791,6.63569682 7.72396754,6 6.69065396,6 L6.69065396,6 L6.69065396,6.0004744 Z" id="path-1"></path>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4.-Organisms/2.-Footer/1.-Desktop-(+)-1366" transform="translate(-1020.000000, -274.000000)">
+            <g id="4.-Organisms-/-Footer-/-1366">
+                <g id="--Social" transform="translate(1015.000000, 104.000000)">
+                    <g transform="translate(0.000000, 44.000000)" id="--LinkedIn">
+                        <g transform="translate(0.000000, 120.000000)">
+                            <g id="2.-Atoms/Icons/6.-Social/ic_linkedin">
+                                <g id="2.-Atoms/Icons/guide"></g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Icon" fill="#909090" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                <g id="1.-Quarks/Color/Basic/03.-Basic" mask="url(#mask-2)" fill="#879395" fill-rule="nonzero">
+                                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
