@@ -10,28 +10,28 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 //Description Imagens
-import descriptionImage from '../assets/descriptionImage.png';
+import descriptionImage from '../../assets/descriptionImage.png';
 
 //Explicação Imagens
-import howWork1 from '../assets/howWork1.png';
-import howWork2 from '../assets/howWork2.png';
-import howWork3 from '../assets/howWork3.png';
-import arrow from "../assets/yellowArrow-right.png";
+import howWork1 from '../../assets/howWork1.png';
+import howWork2 from '../../assets/howWork2.png';
+import howWork3 from '../../assets/howWork3.png';
+import arrow from "../../assets/yellowArrow-right.png";
 
 
 //Categorias imagens
-import assistenciaEletrodomestico from "../assets/assistenciaEletrodomestico.jpg"
-import servicosDomesticos from "../assets/servicosDomesticos.jpg"
-import construcaoCivil from "../assets/construcaoCivil.jpg"
-import reformaReparos from "../assets/reformaReparos.jpg"
-import instalacaoEletrica from "../assets/instalacaoEletrica.jpg"
-import assistenciaInformatica from "../assets/assistenciaInformatica.jpeg"
-import servicosEncanamento from "../assets/servicosEncanamento.jpg"
+import assistenciaEletrodomestico from "../../assets/assistenciaEletrodomestico.jpg"
+import servicosDomesticos from "../../assets/servicosDomesticos.jpg"
+import construcaoCivil from "../../assets/construcaoCivil.jpg"
+import reformaReparos from "../../assets/reformaReparos.jpg"
+import instalacaoEletrica from "../../assets/instalacaoEletrica.jpg"
+import assistenciaInformatica from "../../assets/assistenciaInformatica.jpeg"
+import servicosEncanamento from "../../assets/servicosEncanamento.jpg"
 
 import "./TelaInicial.css";
 
-import ServicoCategoria from "../components/ServicoCategoria/ServicoCategoria.js"
-import NavBar from "../components/NavBarUnlogged/navbar.js"
+import ServicoCategoria from "../../components/servicoCategoria/ServicoCategoria.js"
+import NavBar from "../../components/navbarUnlogged/navbar.js"
 
 class TelaInicial extends React.Component {
     render() {

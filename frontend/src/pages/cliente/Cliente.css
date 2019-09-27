@@ -1,0 +1,24 @@
+div#Cliente ul{
+    list-style-type: circle;
+
+}
+
+div#Cliente .row{
+    margin-top: 20px;
+}
+
+div#Cliente .col{
+    margin : 0% 5%;
+}
+
+
+div#Cliente .col .btn-success{
+    position: absolute;
+    right: 2%;
+}
+
+div#Cliente hr{
+    width : 90%;
+    border-top: 1px solid #8c8b8b;
+    margin : 2% 5%;
+}

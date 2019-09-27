@@ -1,0 +1,13 @@
+.navbar,
+.navbar-default {
+    background-color: #f1c232ff !important; /* override background image gradient w/ flat color */
+}
+
+.nav-link {
+    color : #755801 !important;
+}
+
+.tela.nav-link.active{
+    background-color: white !important;
+    border-radius: 10px !important;
+}

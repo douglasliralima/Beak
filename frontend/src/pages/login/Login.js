@@ -116,7 +116,7 @@ class Login extends Component {
                 <Row>
                     <div id = "option-login">
                         <a href = "/cadastro">Não possuo conta</a>
-                        <Button type="submit" variant="warning">Entrar</Button>
+                        <Button type="submit" href = "/cliente" variant="warning">Entrar</Button>
                     </div>
                 </Row>
             </div>
