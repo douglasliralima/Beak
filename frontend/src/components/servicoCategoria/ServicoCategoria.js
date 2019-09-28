@@ -3,6 +3,11 @@ import React from 'react'
 import "./ServicoCategoria.css"
 
 class CategoriaServico extends React.Component{
+    /**
+     * Props:
+     * img - imagem da categoria,
+     * categoria - Descrição da categoria
+     */
     render(){
       return(
         <div class = "categoria">
