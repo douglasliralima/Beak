@@ -10,7 +10,7 @@ import "./Cadastro.css";
 class Cadastro extends React.Component {
     constructor(props){
         super(props);
-        let campos = ["email", "senha", "senhaCheck", "cep", "city", "neighborhood", "complement"]
+        let campos = ["email", "senha", "senhaCheck", "cep", "endereco"]
         let aux = {}
         for (let i in campos) {
             aux[campos[i]] = false
@@ -32,6 +32,7 @@ class Cadastro extends React.Component {
         
         //Pegando o dicionário que temos e atribuindo o atual valor recebido
         let {formData} = this.state;
+
         formData[name] = value;
         // console.log(this.state.formData)
 
@@ -39,43 +40,60 @@ class Cadastro extends React.Component {
     }
 
 
-     async validateCadastroForm(event){
+     async CadastraForm(event){
+        //Pega os dados do state e define a foto
         let {formData} = this.state;
-        //Retorna quais campos deram erro
-        //se retornar um json vazio, todos os campos estavam corretos e o cadastro foi realizado
-        let errorsDescription = await api.post("newcadastro", formData)
-        let errors = {};
+        formData['foto'] = "eu.png"
+
+        //Tenta cadastrar o cliente e retorna a resposta do servidor
+        return await api.post("cadastro-cliente", formData)
+        .then(function (res) {
+            return res.data
+        }).catch(function (err) {
+            alert("Falha na conexão com servidor");
+            window.location.reload()
+            console.error(err);
+            return false;
+        });
+    }
+
+    cadastro = (e) => {
+        e.preventDefault();
+
+        //Primeiro vamos mandar ao servidor os dados no formulário para ele fazer o cadastro
+        //Sucesso: Mensagem que o cliente foi cadastrado em caso de sucesso
+        //Falha: Mensagens de quais foram os erros
+        let errorsDescription = this.CadastraForm(e)
+        .then(function (res){
+            return res
+        }).catch(function(err){
+            console.error(err);
+            // window.location.reload()
+        });
+
+        //Deixamos todas as flags falsas
+        let {errors} = this.state;
+        for (let error in errors){
+            errors[error] = false
+        }
+        
         console.log("ErrorDescription: " + errorsDescription)
-        if (isEmpty(errorsDescription)) {
-            return true;
-        } else {
+        if (errorsDescription == "Cliente valido cadastrado") {
+            alert("Você foi cadastrado!");
+            window.location.reload()
+        } 
+        else {
+            //Ligamos a flag de quais erros aconteceram
             for (let error in errorsDescription) {
                 errors[error] = true;
             }
             this.setState({
                 errors : errors,
                 errorsDescription : errorsDescription,
-            })
-            return false;
-        }
-    }
-
-    cadastro = (e) => {
-        console.log("Olá, como vai vc?")
-
-        e.preventDefault();
-
-        let errors = this.validateCadastroForm(e);
-        console.log(errors);
-        if(errors === true){
-            alert("You are successfully signed in...");
-            // window.location.reload()
-        } else {
-            this.setState({
                 formSubmitted: true
-            });
-            console.log(this.state)
+            })
         }
+        console.log(errors);
     }
 
     render(){
@@ -115,49 +133,32 @@ class Cadastro extends React.Component {
 
                 <FormGroup>
                     <FormLabel><p className = "label">Telefone</p></FormLabel>
-                    <Form.Control  name="telefone" isInvalid = {errors['telefone']} onChange = {this.handleInputChange}/>
+                    <Form.Control  name="telefone" isInvalid = {errors['telefone']} onChange = {this.handleInputChange} placeholder = "083 98206-6789"/>
                     <Form.Control.Feedback type="invalid">
                         {errorsDescription.telefone}
                     </Form.Control.Feedback>
                 </FormGroup>
 
-                <FormGroup as = {Row}>
-                    <Col>
-                        <FormLabel><p className = "label">Cep</p></FormLabel>
-                        <Form.Control name = "cep" isInvalid = {errors['cep']} onChange = {this.handleInputChange} placeholder="9999-999"/>
-                        <Form.Control.Feedback type="invalid">
-                            {errorsDescription.cep}
-                        </Form.Control.Feedback>
-                </Col>
-
-                    <Col>
-                        <FormLabel><p className = "label">Cidade</p></FormLabel>
-                        <Form.Control name = "city" isInvalid = {errors['city']} onChange = {this.handleInputChange}/>
-                        <Form.Control.Feedback type="invalid">
-                            {errorsDescription.city}
-                        </Form.Control.Feedback>
-                    </Col>
+                <FormGroup>
+                    <FormLabel><p className = "label">Cep</p></FormLabel>
+                    <Form.Control name = "cep" isInvalid = {errors['cep']} onChange = {this.handleInputChange} placeholder="9999-999"/>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.cep}
+                    </Form.Control.Feedback>
                 </FormGroup>
 
-                <FormGroup as = {Row}>
-                    <Col>
-                        <FormLabel><p className = "label">Bairro</p></FormLabel>
-                        <Form.Control name = "neighborhood" isInvalid = {errors['neighborhood']} onChange = {this.handleInputChange}/>
-                        <Form.Control.Feedback type="invalid">
-                            {errorsDescription.neighborhood}
-                        </Form.Control.Feedback>
-                    </Col>
+                <FormGroup>
+                    <FormLabel><p className = "label">Endereço</p></FormLabel>
+                    <Form.Control name = "endereco" isInvalid = {errors['endereco']} onChange = {this.handleInputChange} placeholder="Rua bacharel irenaldo de albuquerque chaves, 201, bloco L, apt 402"/>
 
-                    <Col>
-                        <FormLabel><p className = "label">Complemento</p></FormLabel>
-                        <Form.Control name = "complement" isInvalid = {errors['complement']} onChange = {this.handleInputChange}/>
-                        <Form.Control.Feedback type="invalid">
-                            {errorsDescription.complement}
-                        </Form.Control.Feedback>
-                    </Col>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.endereco}
+                    </Form.Control.Feedback>
                 </FormGroup>
             <Row>
-                <Button type="submit" variant="warning">Cadastrar</Button>
+                <Col>
+                    <Button type="submit" variant="warning">Cadastrar</Button>
+                </Col>
             </Row>
             </Form>
 
