@@ -1,10 +1,10 @@
 import React from "react";
 import {Form, FormLabel, FormGroup, Row, Col, Button} from "react-bootstrap";
 
-import {isEmpty} from '../../shared/validator';
+// import {isEmpty} from '../../shared/validator';
 import api from "../../service/api"
 
-// import NavBar from "../../components/navbarUnlogged/navbar.js"
+import NavBar from "../../components/navbarUnlogged/navbar.js"
 import "./Cadastro.css";
 
 class Cadastro extends React.Component {
@@ -100,10 +100,10 @@ class Cadastro extends React.Component {
         const {errors, errorsDescription} = this.state;
         return (
         <div id = "Cadastro">
-        
+            <NavBar/>
             <h1>Criar uma nova conta</h1>
             <Form onSubmit={this.cadastro}>
-                <FormGroup >
+                <FormGroup>
                     <FormLabel><p className = "label">Email</p></FormLabel>
                     <Form.Control  name="email" isInvalid = {errors['email']} onChange={this.handleInputChange} type="email" placeholder="Digite seu email"/>
                     <Form.Text className="text-muted">
