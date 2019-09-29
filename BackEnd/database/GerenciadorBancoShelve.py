@@ -39,7 +39,8 @@ class GerenciadorBancoShelve:
         if (email in list(self.__db.keys())) and (self.__db[email].getSenha() == senha):
             return True
         else:
-            raise ClienteInexistenteException
+            return False
+            #raise ClienteInexistenteException
 
     def persisteCliente(self, cliente):
         self.__db[cliente.getEmail()] = cliente

@@ -102,7 +102,7 @@ print(checkTelefone(telefone))
 
 web_service_return = {}
 
-if web_service_return:
+if not web_service_return:
 	result = False
 
 print("\n", web_service_return, type(web_service_return), result)

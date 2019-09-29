@@ -83,14 +83,16 @@ def login():
     bd = GerenciadorBancoShelve()
     cliente = None
 
-    cliente_valido = FacadeGerenciamentoUsuario.valida_cliente(email, senha)
-    print('cliente_valido:',cliente_valido)
-    if cliente_valido:
+    #cliente_valido = FacadeGerenciamentoUsuario.valida_cliente(email, senha)
+    #print('cliente_valido:',cliente_valido)
+    if bd.validaCliente(email, senha):
         cliente = bd.getCliente(email)
 
         web_service_return['nome'] = str(cliente.getNome())
         web_service_return['validation'] = True
         web_service_return['key'] = str(key)
+    else:
+        web_service_return['validation'] = False
 
 
     bd.closeDB()
