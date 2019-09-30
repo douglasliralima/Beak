@@ -5,13 +5,14 @@ from business.FacadeGerenciamentoUsuario import FacadeGerenciamentoUsuario
 import re
 
 class Checagem:
-	def __init__(self, nome, senha, senhaCheck, email, nascimento, cpf, telefone):
+	def __init__(self, nome, senha, senhaCheck, email, nascimento, cpf, cep, telefone):
 		self.nome = nome
 		self.senha = senha
 		self.senhaCheck = senhaCheck
 		self.email = email
 		self.nascimento = nascimento
 		self.cpf = cpf
+		self.cep = cep
 		self.telefone = telefone
 
 
@@ -29,6 +30,20 @@ class Checagem:
 		else:
 			causa = "CPF vazio"
 			return False, causa, "cpf"
+
+	def checkCEP(self):
+		check = False
+		causa = ""
+
+		if self.cep != "":
+			if re.match(r'[0-9]{5}-[\d]{3}$', self.cep):
+				return True, causa, "cep"
+			else:
+				causa = "Formato invalido de CEP"
+				return False, causa, "cep"
+		else:
+			causa = "CEP vazio"
+			return False, causa, "cep"
 
 	def checkNome(self):
 		check = False
@@ -96,7 +111,7 @@ class Checagem:
 		causa = ""
 
 		if self.telefone != "":
-			if re.match(r'[0-9]{11}$', self.telefone):
+			if re.match(r'[0-9]{12}$', self.telefone):
 				return True, causa, "telefone"
 			else:
 				causa = "Formato invalido de telefone"
@@ -112,6 +127,11 @@ class Checagem:
 		nome = []
 
 		ch, motivo, n = self.checkCPF()
+		checagem.append(ch)
+		causa.append(motivo)
+		nome.append(n)
+
+		ch, motivo, n = self.checkCEP()
 		checagem.append(ch)
 		causa.append(motivo)
 		nome.append(n)

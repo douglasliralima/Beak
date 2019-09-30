@@ -10,7 +10,7 @@ import "./Cadastro.css";
 class Cadastro extends React.Component {
     constructor(props){
         super(props);
-        let campos = ["email", "senha", "senhaCheck", "cep", "endereco"]
+        let campos = ["nome", "email", "senha", "senhaCheck", "cpf", "nascimento", "telefone", "cep", "endereco"]
         let aux = {}
         for (let i in campos) {
             aux[campos[i]] = false
@@ -46,7 +46,8 @@ class Cadastro extends React.Component {
         formData['foto'] = "eu.png"
 
         //Tenta cadastrar o cliente e retorna a resposta do servidor
-        return await api.post("cadastro-cliente", formData)
+        return await api.post("cadastro-cliente", formData, 
+        { headers: { 'Content-Type': 'application/json' } })
         .then(function (res) {
             return res.data
         }).catch(function (err) {
@@ -63,37 +64,35 @@ class Cadastro extends React.Component {
         //Primeiro vamos mandar ao servidor os dados no formulário para ele fazer o cadastro
         //Sucesso: Mensagem que o cliente foi cadastrado em caso de sucesso
         //Falha: Mensagens de quais foram os erros
-        let errorsDescription = this.CadastraForm(e)
-        .then(function (res){
-            return res
+        this.CadastraForm(e)
+        .then((errorsDescription) => {
+            //Deixamos todas as flags falsas
+            let {errors} = this.state;
+            for (let error in errors){
+                errors[error] = false
+            }
+            
+            console.log("ErrorDescription: " + errorsDescription)
+            if (errorsDescription == "Cliente valido cadastrado") {
+                alert("Você foi cadastrado!");
+                window.location.reload()
+            } 
+            else {
+                //Ligamos a flag de quais erros aconteceram
+                for (let error in errorsDescription) {
+                    errors[error] = true;
+                }
+                this.setState({
+                    errors : errors,
+                    errorsDescription : errorsDescription,
+                    formSubmitted: true
+                })
+            }
+            console.log(errors);
         }).catch(function(err){
             console.error(err);
             // window.location.reload()
         });
-
-        //Deixamos todas as flags falsas
-        let {errors} = this.state;
-        for (let error in errors){
-            errors[error] = false
-        }
-        
-        console.log("ErrorDescription: " + errorsDescription)
-        if (errorsDescription == "Cliente valido cadastrado") {
-            alert("Você foi cadastrado!");
-            window.location.reload()
-        } 
-        else {
-            //Ligamos a flag de quais erros aconteceram
-            for (let error in errorsDescription) {
-                errors[error] = true;
-            }
-            this.setState({
-                errors : errors,
-                errorsDescription : errorsDescription,
-                formSubmitted: true
-            })
-        }
-        console.log(errors);
     }
 
     render(){
@@ -104,11 +103,19 @@ class Cadastro extends React.Component {
             <h1>Criar uma nova conta</h1>
             <Form onSubmit={this.cadastro}>
                 <FormGroup>
-                    <FormLabel><p className = "label">Email</p></FormLabel>
-                    <Form.Control  name="email" isInvalid = {errors['email']} onChange={this.handleInputChange} type="email" placeholder="Digite seu email"/>
+                    <FormLabel><p className = "label">Nome</p></FormLabel>
+                    <Form.Control  name="nome" isInvalid = {errors['nome']} onChange={this.handleInputChange} placeholder = "Digite seu nome"/>
                     <Form.Text className="text-muted">
                         Nós não vamos compartilhar nenhum de seus dados com terceiros.
                     </Form.Text>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.nome}
+                    </Form.Control.Feedback>
+                </FormGroup>
+
+                <FormGroup>
+                    <FormLabel><p className = "label">Email</p></FormLabel>
+                    <Form.Control  name="email" isInvalid = {errors['email']} onChange={this.handleInputChange} type="email" placeholder="Digite seu email"/>
                     <Form.Control.Feedback type="invalid">
                         {errorsDescription.email}
                     </Form.Control.Feedback>
@@ -130,6 +137,21 @@ class Cadastro extends React.Component {
                     </Form.Control.Feedback>
                 </FormGroup>
 
+                <FormGroup>
+                    <FormLabel><p className = "label">Cpf</p></FormLabel>
+                    <Form.Control  name="cpf" isInvalid = {errors['cpf']} onChange={this.handleInputChange} placeholder = "065.124.381-71"/>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.cpf}
+                    </Form.Control.Feedback>
+                </FormGroup>
+
+                <FormGroup>
+                    <FormLabel><p className = "label">Data de nascimento</p></FormLabel>
+                    <Form.Control  name="nascimento" isInvalid = {errors['nascimento']} onChange={this.handleInputChange} placeholder = "065.124.381-71"/>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.nascimento}
+                    </Form.Control.Feedback>
+                </FormGroup>
 
                 <FormGroup>
                     <FormLabel><p className = "label">Telefone</p></FormLabel>
@@ -150,7 +172,6 @@ class Cadastro extends React.Component {
                 <FormGroup>
                     <FormLabel><p className = "label">Endereço</p></FormLabel>
                     <Form.Control name = "endereco" isInvalid = {errors['endereco']} onChange = {this.handleInputChange} placeholder="Rua bacharel irenaldo de albuquerque chaves, 201, bloco L, apt 402"/>
-
                     <Form.Control.Feedback type="invalid">
                         {errorsDescription.endereco}
                     </Form.Control.Feedback>

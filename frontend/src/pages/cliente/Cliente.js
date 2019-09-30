@@ -6,10 +6,17 @@ import "./Cliente.css"
 
 import api from "../../service/api"
 
-import RequestResume from "../../components/requestResume/RequestResume"
+import Feed from "../../components/feed/Feed"
 class Cliente extends React.Component {
-    state = {
-        feed : [], //Feed de buscas que o usuário tenha feito
+    constructor(props){
+        super(props);
+
+        this.state = {
+            feed : [], //Feed de buscas que o usuário tenha feito
+            cliente : this.props.location.state.key //Chave recebida do cliente, ao ele fazer o login
+
+        }
+
 
     }
 
@@ -32,12 +39,7 @@ class Cliente extends React.Component {
                 {/* <section id = "post-list">
                     {this.state.feed.map(post ==> (<RequestResume title = {post.title} description = {post.description} responses = {this.responses} view = {this.view}/>))}
                 </section> */}
-                <RequestResume title = "Limpeza de louça nos finais de semana" description = "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros" responses = "2" view = "2"/>
-                <RequestResume title = "Limpeza de louça nos finais de semana" description = "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros" responses = "2" view = "2"/>
-                <RequestResume title = "Limpeza de louça nos finais de semana" description = "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros" responses = "2" view = "2"/>
-                <RequestResume title = "Limpeza de louça nos finais de semana" description = "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros" responses = "2" view = "2"/>
-                <RequestResume title = "Limpeza de louça nos finais de semana" description = "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros" responses = "2" view = "2"/>
-
+                <Feed usuario = {this.state.cliente} tipoUsuario = "cliente" tipoFeed = "buscas"/>
             </div>
         );
     }

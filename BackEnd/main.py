@@ -6,6 +6,7 @@ import uuid
 
 from random import randrange, randint
 from flask import Flask, render_template, request
+from flask_cors import CORS
 
 linux_origin_path = ".."
 windows_origin_path = ".."
@@ -22,6 +23,7 @@ from business.FacadeGerenciamentoUsuario import FacadeGerenciamentoUsuario
 from checagem import Checagem
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/cadastro-cliente", methods=['POST'])
@@ -36,11 +38,12 @@ def cadastroCliente():
     email = str(dados['email'])
     nascimento = str(dados['nascimento'])
     cpf = str(dados['cpf'])
+    cep = str(dados['cep'])
     foto = str(dados['foto'])
     telefone = str(dados['telefone'])
     endereco = str(dados['endereco'])
 
-    check = Checagem(nome, senha, senhaCheck, email, nascimento, cpf, telefone)
+    check = Checagem(nome, senha, senhaCheck, email, nascimento, cpf, cep, telefone)
     bd = GerenciadorBancoShelve()
 
     checagem, causa, campo = check.run()
@@ -58,7 +61,7 @@ def cadastroCliente():
             else:
                 web_service_return[campo[i]] = causa[i]
         if not web_service_return:
-            cliente = Cliente(nome, senha, email, nascimento, cpf, foto, telefone, endereco)
+            cliente = Cliente(nome, senha, email, nascimento, cpf, foto, telefone, cep, endereco)
             print(cliente)
             bd.persisteCliente(cliente)
             bd.closeDB()
@@ -68,8 +71,11 @@ def cadastroCliente():
     web_service_return_json = json.dumps(web_service_return)
     return web_service_return_json
 
-@app.route("/login", methods=['GET'])
+@app.route("/login", methods=['POST'])
 def login():
+    print(request)
+    print(request.data)
+    print("\n\n\n\n\n\n\n")
     dados = request.get_json()
     email = str(dados['email'])
     senha = str(dados['senha'])
@@ -103,5 +109,5 @@ def login():
 
 if __name__ == '__main__':
     # Inicializa o servidor da aplicação:
-    #app.run(host='0.0.0.0', port=3000)
-    app.run()
+    app.run(host='localhost', port=5000)
+    # app.run()
