@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import sys
 import uuid
+from datetime import datetime
 
 from random import randrange, randint
 from flask import Flask, render_template, request
@@ -106,6 +107,29 @@ def login():
     web_service_return_json = json.dumps(web_service_return)
     return web_service_return_json
     #return cliente
+
+
+@app.route("/cliente-buscas", methods=['GET'])
+def clienteBuscas():
+    print(request)
+    print(request.data)
+    agora = datetime.now()
+    web_service_return = { "post-id"  : "69e78a44-3242-44fa-bf29-be46ac6c3154", 
+    "date"  :   str(agora),
+    "title"  : "Limpeza da casa nos finais de semana", 
+    "description" : "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros", 
+    "orçamentos" : 0, 
+    "visualizações" : 1 }
+    web_service_return_json = json.dumps(web_service_return)
+    return web_service_return_json
+    #return cliente
+
+
+@app.route("/nova-busca", methods=['POST'])
+def novaBusca():
+    print(request)
+    print(request.data)
+    return "Busca cadastrada"
 
 if __name__ == '__main__':
     # Inicializa o servidor da aplicação:

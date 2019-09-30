@@ -13,10 +13,10 @@ class RequestResume extends React.Component{
      */
     render (){
         return (
-            <div class = "RequestResume">
+            <div className = "RequestResume">
                 <Row>
                     <Col sm  = {2} className = "icon-section">
-                        <img class = "iconDescription" src = {resumeIcon}/>
+                        <img className = "iconDescription" src = {resumeIcon}/>
                     </Col>
                     <Col>
                         <h1 id = "title">{this.props.title}</h1>

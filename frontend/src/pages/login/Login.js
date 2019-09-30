@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Form, FormGroup, FormControl, FormLabel, Button} from 'react-bootstrap';
-import {BrowserRouter, Route, Link, NavLink, Redirect, Prompt} from 'react-router-dom';
+// import {BrowserRouter, Route, Link, NavLink, Redirect, Prompt} from 'react-router-dom';
+import {BrowserRouter, Redirect} from 'react-router-dom';
 
 import { isEmail, isEmpty, isLength, isContainWhiteSpace } from '../../shared/validator';
 import './login.css';
@@ -146,7 +147,7 @@ class Login extends Component {
                         </Form>
                     </Row>
                     <div id = "redirect">
-                        {validation && <Redirect to= {{pathname : '/cliente', state : {key : key}}} />}
+                        {validation && <Redirect to= {{pathname : '/cliente', state : {key : key}}}/>}
                     </div>
                 </div>
             </BrowserRouter>
