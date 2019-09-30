@@ -1,6 +1,7 @@
 import React from "react"
 import {Form, FormLabel, FormGroup, Row, Col, Button} from "react-bootstrap";
 import {BrowserRouter, Redirect} from "react-router-dom"
+
 import NavBar from "../../components/navbarLogged/Navbar"
 import "./NovaBusca.css"
 
@@ -9,9 +10,15 @@ import api from "../../service/api"
 class NewPost extends React.Component {
     constructor(props){
         super(props);
-
+        let campos = ["titulo", "categoria", "descricaoGeral"]
+        let aux = {}
+        for (let i in campos) {
+            aux[campos[i]] = false
+        }
         this.state = {
             cliente : this.props.location.state.key, //Cliente que está fazendo aquela busca
+            errors : aux, //Booleans se cada campo está invalido
+            errorsDescription : [], //Descrição do erro que aconteceu naquele campo
             formData : {}, //Dados a respeito do busca
             formSubmitted : false, //Boolean que diz se a busca foi ou não realizado
         };
@@ -29,6 +36,7 @@ class NewPost extends React.Component {
 
         formData[name] = value;
         // console.log(this.state.formData)
+        console.log(formData)
 
         this.setState({formData : formData});
     }
@@ -60,13 +68,28 @@ class NewPost extends React.Component {
         //Falha: Mensagens de quais foram os erros
         this.BuscaForm(e)
         .then((res) => {
+            //Deixamos todas as flags falsas
+            let {errors} = this.state;
+            for (let error in errors){
+                errors[error] = false
+            }
+
             if (res == "Busca cadastrada") {
                 alert("Sua busca foi cadastrada!");
                 this.setState({
                     formSubmitted: true
                 })
-                window.location.reload()
+            } else {
+                //Ligamos a flag de quais erros aconteceram
+                for (let error in res) {
+                    errors[error] = true;
+                }
+                this.setState({
+                    errors : errors,
+                    errorsDescription : res,
+                })
             }
+            window.location.reload()
         }).catch(function(err){
             console.error(err);
             // window.location.reload()
@@ -74,7 +97,7 @@ class NewPost extends React.Component {
     }
 
     render(){
-        let {formSubmitted, cliente} = this.state;
+        let {errors, errorsDescription, formSubmitted, cliente} = this.state;
         return (
         <div id = "Busca">
             <BrowserRouter>
@@ -83,17 +106,31 @@ class NewPost extends React.Component {
                 <Form onSubmit={this.busca}>
                     <FormGroup>
                         <FormLabel><p className = "label">Nome</p></FormLabel>
-                        <Form.Control  name="titulo" onChange={this.handleInputChange} placeholder = "Digite o titulo"/>
+                        <Form.Control  name="titulo" isInvalid = {errors['titulo']} onChange={this.handleInputChange} placeholder = "Digite o titulo"/>
+                        <Form.Control.Feedback type="invalid">
+                            {errorsDescription.titulo}
+                        </Form.Control.Feedback>
                     </FormGroup>
 
                     <FormGroup>
                         <FormLabel><p className = "label">Categoria</p></FormLabel>
-                        <Form.Control  name="categoria" onChange={this.handleInputChange} placeholder = "Digite a categoria"/>
+                        <Form.Control  name="categoria" onChange={this.handleInputChange} placeholder = "Digite a categoria" as = "select">
+                            <option>Servicos Domesticos</option>
+                            <option>Reparo Eletrodomesticos</option>
+                            <option>Construcao Civil</option>
+                            <option>Reparo e Carpintaria</option>
+                            <option>Instalacao Eletrica</option>
+                            <option>Assistencia Informatica</option>
+                            <option>Servicos Encanamento</option>
+                        </Form.Control>
                     </FormGroup>
 
                     <FormGroup>
                         <FormLabel><p className = "label">Descricao Geral</p></FormLabel>
-                        <Form.Control  name="descricaoGeral" onChange={this.handleInputChange} placeholder = "Digite a Descricao Geral"/>
+                        <Form.Control  name="descricaoGeral" isInvalid = {errors['descricaoGeral']} onChange={this.handleInputChange} placeholder = "Digite a Descricao Geral"/>
+                        <Form.Control.Feedback type="invalid">
+                            {errorsDescription.descricaoGeral}
+                        </Form.Control.Feedback>
                     </FormGroup>
 
                 <Row>
