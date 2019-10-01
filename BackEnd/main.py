@@ -6,8 +6,12 @@ import uuid
 from datetime import datetime
 
 from random import randrange, randint
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+from flask_session import Session
 from flask_cors import CORS
+from waitress import serve
+
+
 
 linux_origin_path = ".."
 windows_origin_path = ".."
@@ -19,12 +23,73 @@ if (sys.platform == "win32" or sys.platform == "win64") and windows_origin_path 
     sys.path.append(windows_origin_path)
 
 from classes.cliente import Cliente
+from classes.servico import Servico
 from database.GerenciadorBancoShelve import GerenciadorBancoShelve
+from database.servicoBD import servicoBD
 from business.FacadeGerenciamentoUsuario import FacadeGerenciamentoUsuario
 from checagem import Checagem
 
 app = Flask(__name__)
+app.config['SESSION_TYPE'] = 'filesystem'
+app.secret_key = 'gledson'
+sess = Session()
 CORS(app)
+
+def addSession(email):
+
+    user_id = str(uuid.uuid4())
+    cookies = request.cookies
+
+    if 'session' in cookies:
+        #user_id = cookies['session']
+        old_id = cookies['session']
+        if old_id in session:
+            del session[old_id]
+            session.modified = True
+            #app.save_session(session)
+
+    user = {}
+    user['id'] = user_id
+    json_user = json.dumps(user, sort_keys=True)
+
+    #print('User ID:', user_id)
+    #print('Session:', session.clear())
+    if user_id in session:
+        session.modified = True
+        session[user_id] = {}
+        #print('===Session:', session)
+
+    else:
+        session.modified = True
+        session[user_id] = {}
+        #print('Session with:', session)
+    #print('Session:', session)
+
+    session[user_id]['email'] = email
+
+    return user_id
+
+def getContext(userID):
+    contextId = {}
+    #contextId = session['users'][userID]
+    #print("contextId:", contextId)
+    if userID in session:
+        contextId = session[userID]
+        #print("contextId:", contextId)
+    #print("contextId:", contextId)
+    return contextId
+
+def logoutUser(userID):
+    ##print("userID no LOGOUT:", userID)
+    #session.clear()
+    #print('Session for Removed:', session)
+    if userID in session:
+        del session[userID]
+        session.modified = True
+        #app.save_session(session)
+        #removed = session['users'].pop(userID)
+        #print('Session for Removed:', session)
+        #print('Removed from session:', removed)'''
 
 
 @app.route("/cadastro-cliente", methods=['POST'])
@@ -84,7 +149,7 @@ def login():
     print('email:', email)
     print('senha:', senha)
 
-    key = uuid.uuid4()
+    #key = uuid.uuid4()
     web_service_return = {}
 
     bd = GerenciadorBancoShelve()
@@ -94,7 +159,7 @@ def login():
     #print('cliente_valido:',cliente_valido)
     if bd.validaCliente(email, senha):
         cliente = bd.getCliente(email)
-
+        key = addSession(email)
         web_service_return['nome'] = str(cliente.getNome())
         web_service_return['validation'] = True
         web_service_return['key'] = str(key)
@@ -108,18 +173,27 @@ def login():
     return web_service_return_json
     #return cliente
 
+@app.route("/novo-servico", methods=['POST'])
+def novoServico():
+    dados = request.get_json()
+    uuid = str(str(dados['uuid']))
+    titulo = str(dados['titulo'])
+    categoria = str(dados['categoria'])
+    descricaoGeral = str(dados['descricaoGeral'])
+    foto = str(dados['foto'])
+    context = getContext(uuid)
+    cliente = context['email']
 
-@app.route("/cliente-buscas", methods=['GET'])
+    bd = servicoBD()
+
+    if bd.validaServico()
+
+
+
+@app.route("/servico-cliente", methods=['GET'])
 def clienteBuscas():
-    print(request)
-    print(request.data)
-    agora = datetime.now()
-    web_service_return = { "post-id"  : "69e78a44-3242-44fa-bf29-be46ac6c3154", 
-    "date"  :   str(agora),
-    "title"  : "Limpeza da casa nos finais de semana", 
-    "description" : "Gostaria de alguém que pudesse vir a minha casa esse final de semana para dar uma limpeza geral na casa, incluindo os banheiros", 
-    "orçamentos" : 0, 
-    "visualizações" : 1 }
+    userID = request.args.get('key')
+
     web_service_return_json = json.dumps(web_service_return)
     return web_service_return_json
     #return cliente
@@ -131,7 +205,12 @@ def novaBusca():
     print(request.data)
     return "Busca cadastrada"
 
+
+
+
+
 if __name__ == '__main__':
     # Inicializa o servidor da aplicação:
-    app.run(host='localhost', port=5000)
-    # app.run()
+    #app.run(host='localhost', port=5000)
+    sess.init_app(app)
+    serve(app, host = '0.0.0.0', port = 5000, threads=100)

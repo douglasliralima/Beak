@@ -9,7 +9,7 @@ class Cliente:
 		self.__foto = foto
 		self.__telefone = telefone
 		self.__endereco = endereco
-		self.__id = None
+		self.__servicos = []
 
 	def getNome(self):
 		return self.__nome
@@ -38,8 +38,8 @@ class Cliente:
 	def getEndereco(self):
 		return self.__endereco
 
-	def getId(self):
-		return self.__id
+	def getServicos(self):
+		return self.__servicos
 
 	def setSenha(self, novasenha):
 		self.__senha = novasenha
@@ -62,8 +62,11 @@ class Cliente:
 	def setFoto(self, foto):
 		self.__foto = foto
 
-	def setId(self, uiid):
-		self.__id = uiid
+	def addServico(self, servico):
+		self.__servicos.append(servico)
+
+	def excluiServico(self, servico):
+		self.__servico.append()
 
 	def __str__(self):
 		return str(self.__nome + '\n' + self.__senha + '\n' + self.__email + '\n' + self.__nascimento + 
