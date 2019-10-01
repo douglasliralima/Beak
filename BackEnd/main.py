@@ -66,6 +66,7 @@ def addSession(email):
     #print('Session:', session)
 
     session[user_id]['email'] = email
+    print(session[user_id]['email'])
 
     return user_id
 
@@ -86,11 +87,24 @@ def logoutUser(userID):
     if userID in session:
         del session[userID]
         session.modified = True
-        #app.save_session(session)
+        '''#app.save_session(session)
         #removed = session['users'].pop(userID)
         #print('Session for Removed:', session)
         #print('Removed from session:', removed)'''
 
+def listaStatus(listaId, status):
+
+    servico_bd = servicoBD()
+    lista_status = []
+    for servico_id in listaId:
+        status_atual = servico_bd.retornaStatus(servico_id)
+
+        if (status_atual == status):
+            lista_status.append(servico_bd.getServico(servico_id))
+
+    servico_bd.closeDB()
+
+    return lista_status
 
 @app.route("/cadastro-cliente", methods=['POST'])
 def cadastroCliente():
@@ -166,38 +180,95 @@ def login():
     else:
         web_service_return['validation'] = False
 
-
+    print("session: ", session)
     bd.closeDB()
 
     web_service_return_json = json.dumps(web_service_return)
     return web_service_return_json
-    #return cliente
 
 @app.route("/novo-servico", methods=['POST'])
 def novoServico():
+    web_service_return = {}
+
     dados = request.get_json()
-    uuid = str(str(dados['uuid']))
+    uid = str(str(dados['uuid']))
     titulo = str(dados['titulo'])
     categoria = str(dados['categoria'])
     descricaoGeral = str(dados['descricaoGeral'])
     foto = str(dados['foto'])
-    context = getContext(uuid)
-    cliente = context['email']
 
-    bd = servicoBD()
+    print("session:", session)
 
-    if bd.validaServico()
+    if titulo != "":
+        if descricaoGeral != "":
+            context = getContext(uid)
+            print("\n\n", context)
+            email = context['email']
+
+            print(email)
+
+            id_servico = str(uuid.uuid4())
+
+            bd_servico = servicoBD()
+            bd_cliente = GerenciadorBancoShelve()
+
+            cliente = bd_cliente.getCliente(email)
+            servico = Servico(id_servico, cliente, titulo, categoria, descricaoGeral, foto)
+            cliente.addServico(id_servico)
+            bd_cliente.excluiCliente(email)
+            bd_cliente.persisteCliente(cliente)
+            bd_servico.persisteServico(servico)
 
 
+            bd_servico.persisteServico(servico)
+            bd_servico.closeDB()
+            bd_cliente.closeDB()
 
-@app.route("/servico-cliente", methods=['GET'])
-def clienteBuscas():
-    userID = request.args.get('key')
+            return "Busca cadastrada"
+        else:
+            web_service_return['descricaoGeral'] = "Campo vazio"
+    else:
+        web_service_return['titulo'] = "Campo vazio"
 
     web_service_return_json = json.dumps(web_service_return)
     return web_service_return_json
-    #return cliente
 
+@app.route("/servico-cliente", methods=['GET'])
+def clienteBuscas():
+    print(request)
+    print("Session servico cliente:", session)
+    userID = request.args.get('key')
+    context = getContext(uuid)
+    email = context['email']
+
+    bd_servico = servicoBD()
+    bd_cliente = GerenciadorBancoShelve()
+
+    id_servicos = bd_cliente.getCliente(email).getServicos()
+
+    lista_servicos = listaStatus(id_servicos, "pendente")
+
+    #Cria uma lista de json com todos os serviços
+    data_servicos = {}
+    data_servicos['servicos_listados'] = []
+    for servico in lista_servicos:
+        dados_servico = {}
+
+        #Dados do Serviço
+        dados_servico['date'] = servico.getData()
+        dados_servico['categoria'] = servico.getCategoria()
+        dados_servico['title'] = servico.getTitulo()
+        dados_servico['description'] = servico.getDescricaoGeral()
+        dados_servico['orçamentos'] = servico.getOrcamentos()
+        dados_servico['visualizações'] = servico.getVisualizacoes()
+
+        json_dados_servico = json.dumps(dados_servico, sort_keys=True)
+
+        data_servicos['servicos_listados'].append(json_dados_servico)
+
+    json_servicos = json.dumps(data_servicos, sort_keys=True)
+
+    return json_servicos
 
 @app.route("/nova-busca", methods=['POST'])
 def novaBusca():

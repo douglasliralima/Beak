@@ -66,7 +66,7 @@ class Cliente:
 		self.__servicos.append(servico)
 
 	def excluiServico(self, servico):
-		self.__servico.append()
+		self.__servico.append(servico)
 
 	def __str__(self):
 		return str(self.__nome + '\n' + self.__senha + '\n' + self.__email + '\n' + self.__nascimento + 

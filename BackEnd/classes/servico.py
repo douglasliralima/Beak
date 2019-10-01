@@ -1,7 +1,13 @@
+from datetime import datetime
+from pytz import timezone
+
+recife = timezone('America/Recife')
+
 class Servico:
-	def __init__(self, cliente, titulo, categoria, descricaoGeral, foto):
-		self.__id = ""
+	def __init__(self, idservico, cliente, titulo, categoria, descricaoGeral, foto):
+		self.__id = idservico
 		self.__cliente = cliente
+		self.__data = datetime.now(recife)
 		self.__titulo = titulo
 		self.__categoria = categoria
 		self.__descricaoGeral = descricaoGeral
@@ -12,6 +18,9 @@ class Servico:
 
 	def getCliente(self):
 		return self.__cliente
+
+	def getData(self):
+		return self.__data
 
 	def getTitulo(self):
 		return self.__titulo
@@ -54,3 +63,9 @@ class Servico:
 
 	def addVisualizacoes(self):
 		self.__visualizacoes += 1
+
+	def getOrcamentos(self):
+		return self.__orcamentos
+
+	def getVisualizacoes(self):
+		return self.__visualizacoes

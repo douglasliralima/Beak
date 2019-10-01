@@ -19,7 +19,7 @@ class NewPost extends React.Component {
             cliente : this.props.location.state.key, //Cliente que está fazendo aquela busca
             errors : aux, //Booleans se cada campo está invalido
             errorsDescription : [], //Descrição do erro que aconteceu naquele campo
-            formData : {}, //Dados a respeito do busca
+            formData : {categoria : "Servicos Domesticos"}, //Dados a respeito do busca
             formSubmitted : false, //Boolean que diz se a busca foi ou não realizado
         };
     }
@@ -42,13 +42,14 @@ class NewPost extends React.Component {
     }
 
 
-     async BuscaForm(event){
+     async ServicoForm(event){
         //Pega os dados do state e define a foto
         let {formData, cliente} = this.state;
         formData['foto'] = "fotinha.png"
-        formData['cliente'] = cliente
+        formData['uuid'] = cliente
         //Tenta cadastrar a busca e retorna a resposta do servidor
-        return await api.post("nova-busca", formData, 
+        console.log(formData)
+        return await api.post("/novo-servico", formData, 
         { headers: { 'Content-Type': 'application/json' } })
         .then(function (res) {
             return res.data
@@ -66,7 +67,7 @@ class NewPost extends React.Component {
         //Primeiro vamos mandar ao servidor os dados no formulário para ele fazer o busca
         //Sucesso: Mensagem que o cliente foi cadastrado em caso de sucesso
         //Falha: Mensagens de quais foram os erros
-        this.BuscaForm(e)
+        this.ServicoForm(e)
         .then((res) => {
             //Deixamos todas as flags falsas
             let {errors} = this.state;

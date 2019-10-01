@@ -48,7 +48,7 @@ class Cliente extends React.Component {
                 {/* <section id = "post-list">
                     {this.state.feed.map(post ==> (<RequestResume title = {post.title} description = {post.description} responses = {this.responses} view = {this.view}/>))}
                 </section> */}
-                <Feed usuario = {this.state.cliente} tipoUsuario = "cliente" tipoFeed = "buscas"/>
+                <Feed usuario = {this.state.cliente} tipoUsuario = "cliente" tipoFeed = "pendente"/>
             </BrowserRouter>
             </div>
         );

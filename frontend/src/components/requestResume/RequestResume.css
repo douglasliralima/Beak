@@ -1,3 +1,16 @@
+div.RequestResume{
+    transition: transform .5s ease;
+}
+
+div.RequestResume a{
+    text-decoration: none;
+    color : black;
+} 
+
+div.RequestResume:hover{
+    transform: scale(1.08);
+}
+
 div.RequestResume .row{
     width : 90%;
     margin : 2% 5%;

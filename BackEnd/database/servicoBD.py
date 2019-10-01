@@ -34,13 +34,6 @@ class servicoBD:
          #filename = 'clientes.db'
          self.__db = shelve.open(filename, flag='c')
 
-    #def validaServico(self, id):
-    #    if (email in list(self.__db.keys())) and (self.__db[email].getSenha() == senha):
-    #        return True
-    #    else:
-    #        return False
-            #raise ClienteInexistenteException
-
     def persisteServico(self, servico):
         self.__db[servico.getId()] = servico
         return True
@@ -48,7 +41,7 @@ class servicoBD:
     def getServico(self, ident):
         return self.__db[ident]
 
-    def excluiCliente(self, ident):
+    def excluiServico(self, ident):
         del self.__db[ident]
         return True
 
@@ -59,6 +52,26 @@ class servicoBD:
 
         return True
 
+    def isPendente(self, ident):
+        if self.__db[ident].getStatus() == "pendente":
+            return True
+        else:
+            return False
+
+    def isAndamento(self, ident):
+        if self.__db[ident].getStatus() == "andamento":
+            return True
+        else:
+            return False
+
+    def isFinalizado(self, indet):
+        if self.__db[ident].getStatus() == "finalizado":
+            return True
+        else:
+            return False
+
+    def retornaStatus(self, ident):
+        return self.__db[ident].getStatus()
 
     def closeDB(self):
         self.__db.close()
