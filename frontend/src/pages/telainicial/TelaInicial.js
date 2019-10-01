@@ -47,7 +47,8 @@ class TelaInicial extends React.Component {
               <p>
                 Descreve aquilo que precisa em poucos cliques, sem sair de casa. Clique abaixo e faça um orçamento.
               </p>
-              <Button variant="success">Encontrar Profissional</Button>
+                <Button variant="warning">Encontrar Profissional</Button>
+                <Button variant="success">Encontrar Serviço</Button>
             </Col>
             <Col>
               <img

@@ -20,7 +20,8 @@ class Login extends Component {
             formSubmitted: false, // Indicates submit status of login form
             loading: false, // Indicates in progress state of login form
             validation : false,
-            key : undefined,
+            key : "", //chave de uso daquele cliente
+            tipoUsuario : "", //tipo do profissional (cliente|profissional)
         }
     }
 
@@ -100,6 +101,7 @@ class Login extends Component {
                 this.setState({
                     validation: validacao.validation,
                     key: validacao.key,
+                    tipoUsuario : validacao.tipoUsuario,
                 });
                 window.location.reload()
             } else {
@@ -117,7 +119,7 @@ class Login extends Component {
 
     render() {
 
-        const {errors, errorEmail, errorPassword, validation, key} = this.state;
+        const {errors, errorEmail, errorPassword, validation, key, tipoUsuario} = this.state;
 
         return (
             <BrowserRouter>
@@ -147,7 +149,7 @@ class Login extends Component {
                         </Form>
                     </Row>
                     <div id = "redirect">
-                        {validation && <Redirect to= {{pathname : '/cliente', state : {key : key}}}/>}
+                        {validation && <Redirect to= {{pathname : '/cliente', state : {key : key, tipoUsuario : tipoUsuario}}}/>}
                     </div>
                 </div>
             </BrowserRouter>

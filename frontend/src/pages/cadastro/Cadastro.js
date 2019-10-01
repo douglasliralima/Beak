@@ -10,7 +10,7 @@ import "./Cadastro.css";
 class Cadastro extends React.Component {
     constructor(props){
         super(props);
-        let campos = ["nome", "email", "senha", "senhaCheck", "cpf", "nascimento", "telefone", "cep", "endereco"]
+        let campos = ["tipo", "nome", "email", "senha", "senhaCheck", "cpf", "nascimento", "telefone", "cep", "endereco"]
         let aux = {}
         for (let i in campos) {
             aux[campos[i]] = false
@@ -36,6 +36,24 @@ class Cadastro extends React.Component {
         formData[name] = value;
         // console.log(this.state.formData)
 
+        this.setState({formData : formData});
+    }
+
+    handleTypeChange = (event) => {
+        //Pegando em quem ouve uma mudança
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        let {formData} = this.state;
+
+        if (value === "Publicar serviços"){
+            formData[name] = "cliente"
+        } else if (value === "Encontrar serviços"){
+            formData[name] = "profissional"
+        }else{
+            formData[name] = ""
+        }
+        console.log(formData)
         this.setState({formData : formData});
     }
 
@@ -96,18 +114,31 @@ class Cadastro extends React.Component {
     }
 
     render(){
-        const {errors, errorsDescription} = this.state;
+        const {errors, errorsDescription, formData} = this.state;
         return (
         <div id = "Cadastro">
             <NavBar/>
             <h1>Criar uma nova conta</h1>
             <Form onSubmit={this.cadastro}>
+
                 <FormGroup>
-                    <FormLabel><p className = "label">Nome</p></FormLabel>
-                    <Form.Control  name="nome" isInvalid = {errors['nome']} onChange={this.handleInputChange} placeholder = "Digite seu nome"/>
+                    <FormLabel><p className = "label">O que você procura na nossa plataforma?</p></FormLabel>
+                    <Form.Control  name="tipo" isInvalid = {errors['tipo']} onChange={this.handleTypeChange} as = "select">
+                        <option></option>
+                        <option>Publicar serviços</option>
+                        <option>Encontrar serviços</option>
+                    </Form.Control>
                     <Form.Text className="text-muted">
                         Nós não vamos compartilhar nenhum de seus dados com terceiros.
                     </Form.Text>
+                    <Form.Control.Feedback type="invalid">
+                        {errorsDescription.tipo}
+                    </Form.Control.Feedback>
+                </FormGroup>
+
+                <FormGroup>
+                    <FormLabel><p className = "label">Nome</p></FormLabel>
+                    <Form.Control  name="nome" isInvalid = {errors['nome']} onChange={this.handleInputChange} placeholder = "Digite seu nome"/>
                     <Form.Control.Feedback type="invalid">
                         {errorsDescription.nome}
                     </Form.Control.Feedback>

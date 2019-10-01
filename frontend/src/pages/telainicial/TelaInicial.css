@@ -3,6 +3,10 @@ div#telaInicial h1 {
     font-weight: 700;
 }
 
+div#telaInicial .btn{
+    margin : 10px;
+}
+
 div#telaInicial img#description-image{
     margin-left: 140px;
     max-height: 500px;

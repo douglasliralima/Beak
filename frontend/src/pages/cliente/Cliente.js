@@ -15,9 +15,9 @@ class Cliente extends React.Component {
         this.state = {
             feed : [], //Feed de buscas que o usuário tenha feito
             cliente : this.props.location.state.key, //Chave recebida do cliente, ao ele fazer o login
+            tipoUsuario : this.props.location.state.tipoUsuario, //Tipo do usuario que está usando a plataforma
             novabusca : false //Boolean com a intenção do usuário em criar ou não uma nova busca
         }
-
 
     }
 
@@ -33,6 +33,7 @@ class Cliente extends React.Component {
     }
 
     render(){
+        const {tipoUsuario} = this.state;
         return (
             <div id = "Cliente">
             <BrowserRouter>
@@ -48,7 +49,7 @@ class Cliente extends React.Component {
                 {/* <section id = "post-list">
                     {this.state.feed.map(post ==> (<RequestResume title = {post.title} description = {post.description} responses = {this.responses} view = {this.view}/>))}
                 </section> */}
-                <Feed usuario = {this.state.cliente} tipoUsuario = "cliente" tipoFeed = "pendente"/>
+                <Feed usuario = {this.state.cliente} tipoUsuario = {tipoUsuario} tipoFeed = "pendente"/>
             </BrowserRouter>
             </div>
         );
