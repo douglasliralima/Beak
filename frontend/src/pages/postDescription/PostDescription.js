@@ -50,7 +50,8 @@ class PostDescription extends React.Component{
 
                     <h1>Orçamentos</h1>
                     <hr/>
-
+                    
+                    {/* Isso só deve ser mostrado caso eu seja um profissional */}
                     <Row className = "justify-content-center">
                         <Button type="submit" variant="success">Fazer orçamentos</Button>
                     </Row>
@@ -98,7 +99,7 @@ class PostDescription extends React.Component{
                         <Row>
                             <Col sm = {2}>
                                 {/* <img className = "profissional" href = "#"> */}
-                                <p className = "profssional-descricao">foto</p>
+                                <p className = "profissional-descricao">foto</p>
                             </Col>
                             <Col>
                                 <p className = "description">Tenho grande determinação em fazer as tarefas ao qual eu me
@@ -107,7 +108,7 @@ class PostDescription extends React.Component{
                             <Col sm = {2}>
                                 <p className = "titulo">R$100/hora</p>
                             </Col>
-                            <Col sm = {2}>
+                            <Col md = {2}>
                                 <Button type="submit" variant="success">O</Button>
                                 <Button type="submit" variant="danger">X</Button>
                             </Col>
