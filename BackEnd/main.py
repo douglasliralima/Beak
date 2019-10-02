@@ -63,10 +63,10 @@ def addSession(email):
         session.modified = True
         session[user_id] = {}
         #print('Session with:', session)
-    #print('Session:', session)
 
+    print('Session:', session)
     session[user_id]['email'] = email
-    print(session[user_id]['email'])
+    print('Session:', session)
 
     return user_id
 
@@ -76,8 +76,8 @@ def getContext(userID):
     #print("contextId:", contextId)
     if userID in session:
         contextId = session[userID]
-        #print("contextId:", contextId)
-    #print("contextId:", contextId)
+        print("contextId:", contextId)
+    print("contextId:", contextId)
     return contextId
 
 def logoutUser(userID):
@@ -174,6 +174,7 @@ def login():
     if bd.validaCliente(email, senha):
         cliente = bd.getCliente(email)
         key = addSession(email)
+        print('Key:', key)
         web_service_return['nome'] = str(cliente.getNome())
         web_service_return['validation'] = True
         web_service_return['key'] = str(key)
@@ -184,6 +185,7 @@ def login():
     bd.closeDB()
 
     web_service_return_json = json.dumps(web_service_return)
+    print('web_service_return_json:', web_service_return_json)
     return web_service_return_json
 
 @app.route("/novo-servico", methods=['POST'])

@@ -90,11 +90,11 @@ class Cadastro extends React.Component {
                 errors[error] = false
             }
             
-            console.log("ErrorDescription: " + errorsDescription)
-            if (errorsDescription == "Cliente valido cadastrado") {
+            console.log(errorsDescription)
+            if (errorsDescription === "Cliente valido cadastrado") {
                 alert("Você foi cadastrado!");
                 window.location.reload()
-            } 
+            }
             else {
                 //Ligamos a flag de quais erros aconteceram
                 for (let error in errorsDescription) {
@@ -178,7 +178,7 @@ class Cadastro extends React.Component {
 
                 <FormGroup>
                     <FormLabel><p className = "label">Data de nascimento</p></FormLabel>
-                    <Form.Control  name="nascimento" isInvalid = {errors['nascimento']} onChange={this.handleInputChange} placeholder = "065.124.381-71"/>
+                    <Form.Control  name="nascimento" isInvalid = {errors['nascimento']} onChange={this.handleInputChange} placeholder = "11/06/1997"/>
                     <Form.Control.Feedback type="invalid">
                         {errorsDescription.nascimento}
                     </Form.Control.Feedback>

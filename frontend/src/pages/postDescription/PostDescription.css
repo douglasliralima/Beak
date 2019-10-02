@@ -1,0 +1,41 @@
+div#post-description {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+div#post-description h1 {
+    background-color: rgb(245, 200, 67);
+    color : white;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+div#post-description p.titulo {
+    font-size: 18px;
+    color : #38761d;
+    font-weight: 700;
+}
+
+div#post-description p.description {
+    border: 1px solid rgb(172, 166, 166);
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding : 5px;
+}
+
+div#post-description p.description {
+    border: 1px solid rgb(172, 166, 166);
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding : 5px;
+}
+
+div#post-description .btn {
+    margin-right: 5px;
+}

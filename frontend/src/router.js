@@ -6,6 +6,7 @@ import login from './pages/login/Login.js';
 import cadastro from './pages/cadastro/Cadastro'
 import cliente from './pages/cliente/Cliente';
 import NovaBusca from "./pages/novabusca/NovaBusca"
+import PostDescription from "./pages/postDescription/PostDescription"
 //import New from './pages/New';
 
 /**
@@ -24,6 +25,8 @@ function Routes(){
             <Route path = '/cadastro' exact component = {cadastro} />
             <Route path = '/cliente' exact component = {cliente} />
             <Route path = "/cliente/novabusca" exact component = {NovaBusca} />
+            <Route path = "/post-description" exact component = {PostDescription} />
+
         </Switch>
     );
 }
