@@ -193,7 +193,7 @@ def novoServico():
     web_service_return = {}
 
     dados = request.get_json()
-    uid = str(str(dados['uuid']))
+    uid = str(str(dados['key']))
     titulo = str(dados['titulo'])
     categoria = str(dados['categoria'])
     descricaoGeral = str(dados['descricaoGeral'])

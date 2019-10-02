@@ -46,7 +46,7 @@ class NewPost extends React.Component {
         //Pega os dados do state e define a foto
         let {formData, cliente} = this.state;
         formData['foto'] = "fotinha.png"
-        formData['email'] = cliente
+        formData['key'] = cliente
         //Tenta cadastrar a busca e retorna a resposta do servidor
         console.log(formData)
         return await api.post("/novo-servico", formData, 
